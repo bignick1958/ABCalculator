@@ -13,7 +13,7 @@ def do_processing():
     c2 = int(entConversions2.get())
 
     # entry labels control
-    if n1<=0 or n2<=0:
+    if n1 <= 0 or n2 <= 0:
         mb.showerror(title='Ошибка', message = 'Неверное количество поетителей')
         return
 
@@ -29,8 +29,7 @@ def popup_window(n1, c1, n2, c2):
     btn_close_popup.place(x=160, y=250, width=90, height=30)
 
     # fous in opend window
-    window.fous_force()
-
+    window.focus_set()
 
 # главное окно программы
 root = tk.Tk()
@@ -58,9 +57,10 @@ entVisitors1.insert(tk.END, '0')
 lblConversions1= tk.Label(text='Конверсия', font=('Bahnschrift', 10, 'bold'), bg='#C5C6C6')
 lblConversions1.place(x=25, y=115)
 
-entConversions1 = tk.Entry(font=('Bahnschrift', 12, 'bold'), bg='#C5C6C6', justify='center')
+entConversions1 = tk.Entry(font=('Bahnschrift', 10, 'bold'), bg='#C5C6C6', justify='center')
 entConversions1.place(x=115, y=115, width=90, height=20)
 entConversions1.insert(tk.END, '0')
+
 # Creating hadler lable for test group
 lblTitle2 = tk.Label(text='Тестовая группа', font=('Bahnschrift', 13, 'bold'), fg='#008800', bg='#C5C6C6')
 lblTitle2.place(x=25, y=140)

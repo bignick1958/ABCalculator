@@ -52,6 +52,7 @@ def popup_window(n1, c1, n2, c2):
                       + '     ' + num_percent(p2) + os.linesep)
     sigma1 = math.sqrt(p1 * (1 - p1) / n1)
     sigma2 = math.sqrt(p2 * (1 - p2) / n2)
+    txt_output['bg'] ='#C5C6C6'
     txt_output.insert(tk.END, 'Стандартное отклонение' + num_percent(sigma1)
                       + '     ' + num_percent(sigma2) + os.linesep)
     txt_output.insert(tk.END, '                                               ' + os.linesep)
@@ -67,7 +68,7 @@ def popup_window(n1, c1, n2, c2):
 # главное окно программы
 root = tk.Tk()
 root.geometry('280x300')
-root['bg'] = '#C5C6C6'
+root['bg'] = ''
 root.title('A/B калькулятор')
 
 # Creating hadler lable

@@ -45,7 +45,7 @@ def popup_window(n1, c1, n2, c2):
     txt_output.insert(tk.END, '                          группа           группа  ' + os.linesep)
     txt_output.insert(tk.END, '__________________________________________________________' + os.linesep)
 
-    # adding outpot for conversion and standart deviation
+    # adding output for conversion and standart deviation
     p1 = c1 / n1
     p2 = c2 / n2
     txt_output.insert(tk.END, 'Конверсия             ' + num_percent(p1)
@@ -55,7 +55,54 @@ def popup_window(n1, c1, n2, c2):
     txt_output['bg'] ='#C5C6C6'
     txt_output.insert(tk.END, 'Стандартное отклонение' + num_percent(sigma1)
                       + '     ' + num_percent(sigma2) + os.linesep)
-    txt_output.insert(tk.END, '                                               ' + os.linesep)
+    txt_output.insert(tk.END, '__________________________________________________________' + os.linesep)
+
+    # adding to output possible dispersion
+    z1 = 1.96
+    lower1_95 = p1 - z1 * sigma1
+    if lower1_95 < 0:
+        lower1_95 = 0
+    upper1_95 = p1+z1*sigma1
+    if upper1_95 > 1:
+        upper1_95 = 1
+
+    lower2_95 = p2 - z1*sigma2
+    if lower2_95 < 0:
+        lower2_95 = 0
+    upper2_95 = p2 + z1 * sigma2
+    if upper2_95 > 1:
+        upper2_95 = 1
+    print("          ")
+    txt_output.insert(tk.END, '95% Возможный разброс   ' + os.linesep)
+    txt_output.insert(tk.END, '                   от ' + num_percent(lower1_95)
+                      + '     '+ num_percent(lower2_95)+ os.linesep)
+    txt_output.insert(tk.END, '                   До ' + num_percent(upper1_95)
+                      + "     " + num_percent(upper2_95) + os.linesep)
+    txt_output.insert(tk.END, '__________________________________________________________' + os.linesep)
+
+    z2 = 2.575
+    lower1_99 = p1 - z2 * sigma1
+    if lower1_99 < 0:
+        lower1_99 = 0
+    upper1_99 = p1 + z2 * sigma1
+    if upper1_99 > 1:
+        upper1_99 = 1
+
+    lower2_99 = p2 - z2 * sigma2
+    if lower2_99 < 0:
+        lower2_99 = 0
+    upper2_99 = p2 + z2 * sigma2
+    if upper2_99 > 1:
+        upper2_99 = 1
+    print("          ")
+    txt_output.insert(tk.END, '99% Возможный разброс   ' + os.linesep)
+    txt_output.insert(tk.END, '                   от ' + num_percent(lower1_99)
+                      + '     ' + num_percent(lower2_99) + os.linesep)
+    txt_output.insert(tk.END, '                   До ' + num_percent(upper1_99)
+                      + "     " + num_percent(upper2_99) + os.linesep)
+    txt_output.insert(tk.END, '__________________________________________________________' + os.linesep + os.linesep)
+
+
 
     # widow closing knob
     btn_close_popup = tk.Button(window, text='Закрыть', font=('Bahnschrift', 12, 'bold'), command=window.destroy)
@@ -112,6 +159,9 @@ lblConversions2.place(x=25, y=205)
 entConversions2 = tk.Entry(font=('Bahnschrift', 10, 'bold'), bg='#C5C6C6', justify='center')
 entConversions2.place(x=115, y=205, width=90, height=20)
 entConversions2.insert(tk.END, '18')
+
+
+
 # Creating knob to calculate
 btnProccess = tk.Button(text='Рассчитать', font=('Bahnschrift', 12, 'bold'), command=do_processing)
 btnProccess.place(x=25, y=250, width=110, height=30)

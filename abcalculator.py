@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import messagebox as mb
 import os
 import math
-
+from scipy.stats import norm
 
 def do_close():
     root.destroy()
@@ -38,7 +38,7 @@ def popup_window(n1, c1, n2, c2):
 
     # adding text output window
     txt_output = tk.Text(window, font=('Courier New', 10, 'bold'))
-    txt_output.place(x=15, y=115, width=470, height=300)
+    txt_output.place(x=15, y=65, width=470, height=370)
 
     # adding headler's
     txt_output.insert(tk.END, '                          Контрольная      Тестовая' + os.linesep)
@@ -101,7 +101,11 @@ def popup_window(n1, c1, n2, c2):
     txt_output.insert(tk.END, '                   До ' + num_percent(upper1_99)
                       + "     " + num_percent(upper2_99) + os.linesep)
     txt_output.insert(tk.END, '__________________________________________________________' + os.linesep + os.linesep)
-
+    # Z and P calculating
+    z_score = (p2-p1)/math.sqrt(sigma1*sigma1 + sigma2*sigma2)
+    txt_output.insert(tk.END, 'Z = ' + '{:.7f}'.format(z_score)+ os.linesep)
+    p_value = norm.sf(x = z_score, loc = 0, scale= 1)
+    txt_output.insert(tk.END, 'p =  ' + "{:.7f}".format(p_value)+ os.linesep)
 
 
     # widow closing knob
@@ -115,7 +119,7 @@ def popup_window(n1, c1, n2, c2):
 # главное окно программы
 root = tk.Tk()
 root.geometry('280x300')
-root['bg'] = ''
+root['bg'] = '#C5C6C6'
 root.title('A/B калькулятор')
 
 # Creating hadler lable

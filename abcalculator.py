@@ -61,7 +61,7 @@ def popup_window(n1, c1, n2, c2):
     btn_close_popup.place(x=390, y=450, width=90, height=30)
 
     # fous in opend window
-    window.focus_set()
+    window.focus_force()
 
 
 # главное окно программы
